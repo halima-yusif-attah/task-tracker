@@ -6,12 +6,14 @@ import { CreateTaskContext } from '../context/CreateTaskModal';
 function TaskForm() {
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
+  const [pending, setPending] = useState(false);
 
   const { handleShowFormModal } = useContext(CreateTaskContext)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setPending(true);
       await setDoc(doc(collection(db, "tasks")), {
       title,
       text,
@@ -24,6 +26,7 @@ function TaskForm() {
       setTitle("");
       setText("");
       handleShowFormModal()
+      setPending(false);
     }
     
   }
@@ -39,7 +42,7 @@ function TaskForm() {
       
       <div className="flex items-center space-x-4 p-4 ml-auto">
       <button onClick={() => handleShowFormModal()} className='px-4 py-2 border rounded-md border-slate-60 bg-slate-200' >Cancel</button>
-      <button type="submit" className='px-4 py-2 border rounded-md border-slate-600 bg-[green] text-white' >Create</button>
+      <button type="submit" disabled={pending} className='px-4 py-2 border rounded-md border-slate-600 bg-[green] text-white' >Create</button>
       </div>
     
    </form>
