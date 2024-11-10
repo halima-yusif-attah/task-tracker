@@ -89,9 +89,6 @@ Edit a Task: Click the "Edit" button next to any task to modify its title or sta
 Delete a Task: Click the "Delete" button to remove a task from the list.
 Filter Tasks: Use the "Show Completed" and "Show Pending" buttons to filter tasks based on their status.
 Data Persistence: Tasks are saved to local storage and will remain even after the page reloads.
-Implementation Notes
-Local Storage for Persistence:
-To ensure that data persists after the page reloads, I used the browser's local storage. When a task is added, edited, or deleted, the tasks are stored in the localStorage API under a key called "tasks". On app load, the tasks are fetched from localStorage and rendered on the page.
 
 
 Additional Notes:
