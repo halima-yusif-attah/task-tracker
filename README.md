@@ -1,35 +1,50 @@
-Simple App Tracker
+# Simple App Tracker
+
 A simple task tracker built with React that allows users to add, edit, delete, and filter tasks based on their status (completed or pending). This application ensures persistent data, so tasks remain intact even after the page reloads.
 
-Table of Contents
-Overview
-Features
-Technologies Used
-Installation
-Running the App
-Implementation Notes
-License
-Overview
-The Simple App Tracker is a task management app where users can:
+## Table of Contents
+- [Overview](#overview)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Installation](#installation)
+- [Running the App](#running-the-app)
+- [Implementation Notes](#implementation-notes)
+- [License](#license)
 
-Create a new task via a form.
-Edit or delete existing tasks.
-Filter tasks by their status (completed or pending).
-Persistent data after a page reload, thanks to browser local storage.
-Features
-Create a Task: A form allows users to enter task details and save them.
-Edit a Task: Users can modify the title or status of existing tasks.
-Delete a Task: Tasks can be removed from the list.
-Filter Tasks: Users can filter tasks based on their status (completed or pending).
-Persistent Data: The app uses the browser's local storage to save tasks, ensuring the data persists even when the page is reloaded.
-Technologies Used
-React: The front-end library used to build the user interface.
-React Hooks: For managing state (e.g., useState, useEffect) and handling form submission, task updates, and local storage management.
-Local Storage: Data persistence between page reloads is achieved through the browser's local storage.
-TailwiindCSS: Basic styling is used to create a simple and user-friendly interface.
-Webpack: Used as the bundler for this React app.
-Installation
+## Overview
+
+The **Simple App Tracker** is a task management app where users can:
+- **Create a new task** via a form.
+- **Edit** or **delete** existing tasks.
+- **Filter tasks** by their status (completed or pending).
+- **Persistent data** after a page reload, thanks to browser local storage.
+
+## Features
+
+- **Create a Task**: A form allows users to enter task details and save them.
+- **Edit a Task**: Users can modify the title or status of existing tasks.
+- **Delete a Task**: Tasks can be removed from the list.
+- **Filter Tasks**: Users can filter tasks based on their status (completed or pending).
+- **Persistent Data**: The app uses the browser's local storage to save tasks, ensuring the data persists even when the page is reloaded.
+
+## Technologies Used
+
+- **React**: The front-end library used to build the user interface.
+- **React Hooks**: For managing state (e.g., `useState`, `useEffect`) and handling form submission, task updates, and local storage management.
+- **Local Storage**: Data persistence between page reloads is achieved through the browser's local storage.
+- **CSS**: Basic styling is used to create a simple and user-friendly interface.
+- **Webpack**: Used as the bundler for this React app.
+
+## Installation
+
 To run the app locally, follow these steps:
+
+### 1. Clone the repository
+
+Clone this repository to your local machine using the following command:
+
+```bash
+git clone https://github.com/your-username/simple-app-tracker.git
 
 1. Clone the repository
 Clone this repository to your local machine using the following command:
@@ -37,6 +52,7 @@ Clone this repository to your local machine using the following command:
 bash
 Copy code
 git clone https://github.com/your-username/simple-app-tracker.git
+
 2. Install dependencies
 Navigate to the project folder and install the required dependencies using npm or yarn.
 
@@ -50,6 +66,7 @@ bash
 Copy code
 cd simple-app-tracker
 yarn install
+
 3. Start the development server
 Run the app in development mode:
 
