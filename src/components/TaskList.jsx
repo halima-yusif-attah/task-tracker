@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import TaskItem from "./TaskItem"
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { db } from "../firebase/firebase";
@@ -12,20 +12,21 @@ function TaskList() {
   const [loading, setLoading] = useState(false);
   const [filteredData, setFilteredData] = useState('');
   
-  const { showFormModal, handleShowFormModal, setShowFormModal } = useContext(CreateTaskContext);
+  const { showFormModal, setShowFormModal } = useContext(CreateTaskContext);
   const { showDeleteModal, selected } = useContext(DeleteContext)
+
+  const [allTasks, setAllTasks] =  useState(JSON.parse(localStorage.getItem("completedTasks")) || []);
 
   useEffect(() => {
     setLoading(true);
+    let completed = JSON.parse(localStorage.getItem("completedTasks")) || []
 
     const taskRef = collection(db, "tasks");
     const orderedQuery = query(taskRef,(orderBy('timestamp', 'asc')));
 
     onSnapshot(orderedQuery, (snapshot) => {
       let task = snapshot.docs.map((doc) => ({...doc.data(), id: doc.id}))
-              
-      let completed = JSON.parse(localStorage.getItem("completedTasks")) || [];
-
+    
       task.forEach((t) => {
       if (completed.includes(t.id)) {
         t.status = "completed";  
@@ -33,14 +34,14 @@ function TaskList() {
         t.status = "pending";   
       }
     });
-    console.log("task", task);
     localStorage.setItem("TaskData", JSON.stringify(task));
+    setAllTasks(task)
     setTasks(task)
       
 })
    setLoading(false);
-  },[])
-
+  }, [allTasks])
+  
   
   if (loading) {
     return <h1>Loading</h1>

@@ -20,20 +20,19 @@ function TaskForm() {
       status: "pending",
       timestamp: serverTimestamp(),
     })
-      setTitle("");
-      setText("");
       setPending(false);
       setShowFormModal(false);
-      console.log("pending", pending);
+      setTitle("");
+      setText("");
+      
       
     } catch (error) {
       throw new Error(`Error creating a task`, error)
     }finally {
-      setTitle("");
-      setText("");
       setPending(false);
       setShowFormModal(false);
-      
+      setTitle("");
+      setText(""); 
     }
     
   }

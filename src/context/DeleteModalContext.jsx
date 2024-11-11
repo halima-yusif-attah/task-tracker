@@ -11,10 +11,12 @@ function DeleteModalProvider({children}) {
     const handleDelete = async (id) => {
       setSelected(id);
       try {
-        await deleteDoc(doc(db, "tasks", id));
+        await deleteDoc(doc(db, "tasks", id)); 
         setShowDeleteModal(false);
       } catch (error) {
         alert(error.message);
+      }finally {
+        setShowDeleteModal(false)
       }
     };
 

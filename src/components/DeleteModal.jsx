@@ -9,7 +9,7 @@ function DeleteModal({id, label}) {
     <div className="w-full h-[100vh] bg-gray-800 flex items-center justify-center">
       <div className="w-[50%] border border-slate-400 bg-slate-400 p-4 flex space-y-2 flex-col">
         
-          <h2>{`Are you sure you want to delete this ${label}?`}</h2>
+          <h2 className="text-md">{`Are you sure you want to delete this ${label}?`}</h2>
           <p>This action is irrevisible!</p>
           <div className="flex ml-auto space-x-2">
             <button
