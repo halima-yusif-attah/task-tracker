@@ -24,7 +24,7 @@ function EditModal({description, title, id}) {
       setPending(true);
       await updateDoc(doc(db, "tasks", id), {
         title: editTitle,
-        description: editDescription,
+        text: editDescription,
       });
       setPending(false);
       setShow(false);
