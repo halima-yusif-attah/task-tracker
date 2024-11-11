@@ -11,14 +11,15 @@ import { db } from "../firebase/firebase";
 import { MdModeEdit } from "react-icons/md";
 
 
-function EditDialog({description, title, id}) {
+function EditModal({description, title, id}) {
   const [editTitle, setEditTitle] = useState(title);
   const [editDescription, setEditDescription] = useState(description);
   const [show, setShow] = useState(false);
   const [pending, setPending] = useState(false);
-
+ 
   const handleEdit = async (e) => {
     e.preventDefault();
+
     try {
       setPending(true);
       await updateDoc(doc(db, "tasks", id), {
@@ -29,6 +30,7 @@ function EditDialog({description, title, id}) {
       setShow(false);
       setEditTitle("");
       setEditDescription("");
+      
     } catch (error) {
       alert(error.message);
     } finally {
@@ -36,14 +38,20 @@ function EditDialog({description, title, id}) {
       setShow(false);
       setEditTitle("");
       setEditDescription("");
-      
+     
     }
+  }
+
+
+  const handleEditClick = () => {
+    setEditTitle(title)
+    setEditDescription(description)
   }
 
  
   return (
     <Dialog className="flex flex-col space-y-4" open={show} onOpenChange={setShow} >
-  <DialogTrigger className=''><button><MdModeEdit size={25} /></button></DialogTrigger>
+  <DialogTrigger className=''><button onClick={handleEditClick}><MdModeEdit size={25} /></button></DialogTrigger>
   <DialogContent>
     <DialogHeader>
       <DialogTitle className="text-xl pl-2 capitalize">
@@ -67,4 +75,4 @@ function EditDialog({description, title, id}) {
   )
 }
 
-export default EditDialog;
+export default EditModal;

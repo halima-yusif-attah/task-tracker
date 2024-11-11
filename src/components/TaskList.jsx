@@ -61,7 +61,7 @@ function TaskList() {
 
         </div>
 
-        {loading && (<h1 className="flex items-center justify-center h-full">loading...</h1>)}
+        {loading && (<h1 className="flex items-center justify-center h-full text-xl font-md">Loading...</h1>)}
 
       {tasks.length === 0 && !loading && (
         <div className="h-full flex items-center justify-center">

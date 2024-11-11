@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import EditDialog from './EditModal';
+import EditModal from './EditModal';
 import DeleteModal from './DeleteModal';
 
 function TaskItem({ title, description, id }) {
@@ -45,7 +45,7 @@ function TaskItem({ title, description, id }) {
             
             <div className='flex space-x-4 '>
                 <DeleteModal label={title} id={id}/>
-                <EditDialog title={title} description={description} id={id} />
+                <EditModal title={title} description={description} id={id} />
             </div>
            
         </div>
