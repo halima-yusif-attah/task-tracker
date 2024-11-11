@@ -2,7 +2,7 @@ import { getApp, getApps, initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: process.env.FIREBASE_API_KEY,
+  apiKey: "AIzaSyDYDuJOymZUHDwVf4lvKUIp2ck6vnJTrOc",
   authDomain: "task-tracker-app-8e3f8.firebaseapp.com",
   projectId: "task-tracker-app-8e3f8",
   storageBucket: "task-tracker-app-8e3f8.firebasestorage.app",
