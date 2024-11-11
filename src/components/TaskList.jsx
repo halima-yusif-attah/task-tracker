@@ -1,30 +1,25 @@
-import { useContext, useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import TaskItem from "./TaskItem"
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { db } from "../firebase/firebase";
-import { CreateTaskContext } from "../context/CreateTaskModal";
 import TaskForm from "./TaskForm";
-import { DeleteContext } from "../context/DeleteModalContext";
-import DeleteModal from "./DeleteModal";
+
 
 function TaskList() {
   const [tasks, setTasks] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [filteredData, setFilteredData] = useState('');
   
-  const { showFormModal, setShowFormModal } = useContext(CreateTaskContext);
-  const { showDeleteModal, selected } = useContext(DeleteContext)
-
-  const [allTasks, setAllTasks] =  useState(JSON.parse(localStorage.getItem("completedTasks")) || []);
+  const [updatedTasks, setUpdatedTasks] =  useState(JSON.parse(localStorage.getItem("completedTasks")) || []);
 
   useEffect(() => {
-    setLoading(true);
+ 
     let completed = JSON.parse(localStorage.getItem("completedTasks")) || []
 
     const taskRef = collection(db, "tasks");
     const orderedQuery = query(taskRef,(orderBy('timestamp', 'asc')));
 
-    onSnapshot(orderedQuery, (snapshot) => {
+    const unsubscribe = onSnapshot(orderedQuery, (snapshot) => {
       let task = snapshot.docs.map((doc) => ({...doc.data(), id: doc.id}))
     
       task.forEach((t) => {
@@ -34,36 +29,25 @@ function TaskList() {
         t.status = "pending";   
       }
     });
-    localStorage.setItem("TaskData", JSON.stringify(task));
-    setAllTasks(task)
-    setTasks(task)
-      
-})
-   setLoading(false);
-  }, [allTasks])
-  
-  
-  if (loading) {
-    return <h1>Loading</h1>
-  }
 
+    localStorage.setItem("TaskData", JSON.stringify(task));
+    setTasks(task)
+    setUpdatedTasks(task)
+    setLoading(false);
+      
+  })
+   return () => unsubscribe();
+
+  }, [updatedTasks])
+ 
   const handleFilter = (e) => {
     const statusSelected = e.target.value.toLowerCase();
     setFilteredData(statusSelected);
   };
 
-
   return (
     <>
-     {showFormModal && <TaskForm />}
-     {showDeleteModal &&
-      tasks.map((item) => (
-        item.id === selected &&
-       ( <DeleteModal key={item.id} id={item.id} label={item.title} />)
-      ))
-      }
-
-     {!showFormModal && !showDeleteModal &&
+    
     <div className="h-[100vh]">
       <div className='bg-gray-500 w-full flex p-8 items-center '>
             <select name="tasks" id="" defaultValue="" onChange={handleFilter} className="p-2 bg-[white-smoke] rounded-md">
@@ -72,10 +56,14 @@ function TaskList() {
               <option value="completed">Completed</option>
             </select>
         
-            <button className='border rounded-md border-slate-600 bg-[white] p-2  ml-auto' onClick={() => setShowFormModal(true)}>Create a task</button>
+            <div className='border rounded-md border-slate-600 bg-[white] p-2  ml-auto'><TaskForm /></div>
+            
 
         </div>
-      {tasks.length === 0 && (
+
+        {loading && (<h1 className="flex items-center justify-center h-full">loading...</h1>)}
+
+      {tasks.length === 0 && !loading && (
         <div className="h-full flex items-center justify-center">
           <span className="text-slate-500">No Task created</span>
         </div>
@@ -92,7 +80,7 @@ function TaskList() {
       ))}
       
     </div>
-     }
+     
     </>
   )
 }
