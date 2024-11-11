@@ -7,12 +7,13 @@ function CreateTaskProvider({ children }) {
   const [showFormModal, setShowFormModal] = useState(false);
 
   const handleShowFormModal = () => {
-    setShowFormModal(!showFormModal);
+    setShowFormModal(false);
   }
 
   const value = {
     showFormModal,
     handleShowFormModal,
+    setShowFormModal,
    
   }
 

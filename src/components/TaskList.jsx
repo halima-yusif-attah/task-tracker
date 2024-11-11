@@ -12,8 +12,8 @@ function TaskList() {
   const [loading, setLoading] = useState(false);
   const [filteredData, setFilteredData] = useState('');
   
-  const { showFormModal, handleShowFormModal } = useContext(CreateTaskContext);
-  const { showDeleteModal, selected, setSelected } = useContext(DeleteContext)
+  const { showFormModal, handleShowFormModal, setShowFormModal } = useContext(CreateTaskContext);
+  const { showDeleteModal, selected } = useContext(DeleteContext)
 
   useEffect(() => {
     setLoading(true);
@@ -33,7 +33,7 @@ function TaskList() {
         t.status = "pending";   
       }
     });
-    
+    console.log("task", task);
     localStorage.setItem("TaskData", JSON.stringify(task));
     setTasks(task)
       
@@ -71,7 +71,7 @@ function TaskList() {
               <option value="completed">Completed</option>
             </select>
         
-            <button className='border rounded-md border-slate-600 bg-[white] p-2  ml-auto' onClick={handleShowFormModal}>Create a task</button>
+            <button className='border rounded-md border-slate-600 bg-[white] p-2  ml-auto' onClick={() => setShowFormModal(true)}>Create a task</button>
 
         </div>
       {tasks.length === 0 && (

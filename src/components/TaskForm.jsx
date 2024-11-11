@@ -8,7 +8,7 @@ function TaskForm() {
   const [text, setText] = useState("");
   const [pending, setPending] = useState(false);
 
-  const { handleShowFormModal } = useContext(CreateTaskContext)
+  const { handleShowFormModal, setShowFormModal } = useContext(CreateTaskContext)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,13 +20,20 @@ function TaskForm() {
       status: "pending",
       timestamp: serverTimestamp(),
     })
+      setTitle("");
+      setText("");
+      setPending(false);
+      setShowFormModal(false);
+      console.log("pending", pending);
+      
     } catch (error) {
       throw new Error(`Error creating a task`, error)
     }finally {
       setTitle("");
       setText("");
-      handleShowFormModal()
       setPending(false);
+      setShowFormModal(false);
+      
     }
     
   }
