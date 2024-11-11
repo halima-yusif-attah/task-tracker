@@ -40,7 +40,7 @@ function TaskForm() {
 
   return (
     <div className="h-[100vh] flex w-full items-center justify-center">
-   <form onSubmit={handleSubmit} className='flex items-center justify-center flex-col border border-slate-700 rounded-md space-y-4 w-[50%] p-8'>
+   <form onSubmit={handleSubmit} className='flex items-center justify-center flex-col border border-slate-700 rounded-md space-y-4 w-fit p-8'>
 
 
       <input  type="text" placeholder="Enter title" value={title} onChange={(e) => setTitle(e.target.value)} className='w-full p-4 border border-slate-400 rounded-md' minLength={4} maxLength={50} required/>

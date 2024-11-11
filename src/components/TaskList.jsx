@@ -66,7 +66,7 @@ function TaskList() {
      {!showFormModal && !showDeleteModal &&
     <div className="h-[100vh]">
       <div className='bg-gray-500 w-full flex p-8 items-center '>
-            <select name="tasks" id="" defaultValue="" onChange={handleFilter} className="w-[20%] p-2 bg-[white-smoke] rounded-md">
+            <select name="tasks" id="" defaultValue="" onChange={handleFilter} className="p-2 bg-[white-smoke] rounded-md">
               <option value="">Status</option>
               <option value="pending">Pending</option>
               <option value="completed">Completed</option>
