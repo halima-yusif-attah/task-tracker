@@ -42,13 +42,11 @@ function EditModal({description, title, id}) {
     }
   }
 
-
   const handleEditClick = () => {
     setEditTitle(title)
     setEditDescription(description)
   }
 
- 
   return (
     <Dialog className="flex flex-col space-y-4" open={show} onOpenChange={setShow} >
   <DialogTrigger className=''><button onClick={handleEditClick}><MdModeEdit size={25} /></button></DialogTrigger>
