@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import EditDialog from './EditDialog';
+import EditDialog from './EditModal';
 import DeleteModal from './DeleteModal';
 
 function TaskItem({ title, description, id }) {

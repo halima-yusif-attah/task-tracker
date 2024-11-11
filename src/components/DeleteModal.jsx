@@ -37,7 +37,7 @@ function DeleteModal({id, label}) {
   <DialogContent>
     <DialogHeader>
       <DialogTitle>{`Are you sure you want to delete this ${label}?`}</DialogTitle>
-      <DialogDescription>
+      <DialogDescription className="text-md">
         This action is irrevisible!
       </DialogDescription>
     </DialogHeader>

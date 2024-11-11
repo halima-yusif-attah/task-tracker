@@ -2,6 +2,8 @@ import { useState } from "react";
 import {
   Dialog,
   DialogContent,
+  DialogHeader,
+  DialogTitle,
   DialogTrigger,
 } from "./ui/dialog"
 import { doc, updateDoc } from "firebase/firestore";
@@ -43,9 +45,13 @@ function EditDialog({description, title, id}) {
     <Dialog className="flex flex-col space-y-4" open={show} onOpenChange={setShow} >
   <DialogTrigger className=''><button><MdModeEdit size={25} /></button></DialogTrigger>
   <DialogContent>
+    <DialogHeader>
+      <DialogTitle className="text-xl pl-2 capitalize">
+        Edit task
+     </DialogTitle>
+    </DialogHeader>
+    
     <form onSubmit={handleEdit} className='flex flex-col space-y-4 p-2'>
-
-
       <input  type="text" placeholder="Enter title" value={editTitle} onChange={(e) => setEditTitle(e.target.value)} className='w-full p-4 border border-slate-400 rounded-md' minLength={4} maxLength={50} required/>
       <textarea  id="description" name="description" rows={10} columns={30} value={editDescription} onChange={(e) => setEditDescription(e.target.value)} className='w-full p-4 border rounded-md border-slate-400' placeholder="Enter task description" required minLength={4} maxLength={150}>Add description</textarea>
       

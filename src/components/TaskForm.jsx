@@ -5,6 +5,8 @@ import { collection, doc, serverTimestamp, setDoc } from 'firebase/firestore';
 import {
   Dialog,
   DialogContent,
+  DialogHeader,
+  DialogTitle,
   DialogTrigger,
 } from "./ui/dialog"
 
@@ -47,10 +49,15 @@ function TaskForm() {
   return (  
     <Dialog className="flex flex-col space-y-4" open={show} onOpenChange={setShow} >
   <DialogTrigger className='mb-2'>create task</DialogTrigger>
+  
   <DialogContent>
+    <DialogHeader>
+      <DialogTitle className="text-xl pl-2 capitalize">
+    Create a new task
+  </DialogTitle>
+    </DialogHeader>
+
     <form onSubmit={handleSubmit} className='flex flex-col space-y-4 p-2'>
-
-
       <input  type="text" placeholder="Enter title" value={title} onChange={(e) => setTitle(e.target.value)} className='w-full p-4 border border-slate-400 rounded-md' minLength={4} maxLength={50} required/>
       <textarea  id="description" name="description" rows={10} columns={30} value={text} onChange={(e) => setText(e.target.value)} className='w-full p-4 border rounded-md border-slate-400' placeholder="Enter task description" required minLength={4} maxLength={150}>Add description</textarea>
       
